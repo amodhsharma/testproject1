@@ -1,0 +1,15 @@
+.main-output {
+  width: 100%;
+  background-color: #eef9f1;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 16px;
+}
+
+.main-output pre {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  overflow-x: auto;
+}

@@ -1,0 +1,15 @@
+.ack-output {
+  width: 100%;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 50px;
+}
+
+.ack-output pre {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  overflow-x: auto;
+}
