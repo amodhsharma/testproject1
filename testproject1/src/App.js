@@ -6,6 +6,9 @@ import JsonInput from "./components/JsonInput/JsonInput";
 import AckOutput from "./components/AckOutput/AckOutput";
 import MainOutput from "./components/MainOutput/MainOutput";
 
+import ScriptToggle from "./components/ScriptToggle/ScriptToggle"; // <-- new import
+import { applyScripts } from "./components/ScriptToggle/scripts"; // <-- new import
+
 import "./App.css";
 
 function App() {
@@ -14,11 +17,20 @@ function App() {
   const [ackResponse, setAckResponse] = useState("");
   const [mainResponse, setMainResponse] = useState("");
 
+  const [isScriptActive, setIsScriptActive] = useState(false); // <-- new state
+
+  const handleToggleScripts = () => { // <-- new function
+    setIsScriptActive((prev) => !prev);
+  };
+
   const handleSendRequest = async () => {
     if (!selectedApi) {
       setAckResponse("Please select an API first!");
       return;
     }
+
+    // Apply scripts only if toggle is active
+    const finalRequest = applyScripts(jsonRequest, isScriptActive);
 
     try {
       // Send request to local server on port 8085
@@ -27,7 +39,7 @@ function App() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: jsonRequest,
+        body: finalRequest, // <-- use finalRequest instead of jsonRequest
       });
 
       const ackData = await res.json();
@@ -37,7 +49,7 @@ function App() {
       const webhookRes = await fetch("http://localhost:9095/webhook", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: jsonRequest,
+        body: finalRequest, // <-- use finalRequest here as well
       });
 
       const mainData = await webhookRes.json();
@@ -62,11 +74,15 @@ function App() {
       {/* JSON Input */}
       <JsonInput value={jsonRequest} onChange={setJsonRequest} />
 
-      {/* Send button */}
-      <div style={{ margin: "10px 0" }}>
-        <button className="send-button" onClick={handleSendRequest}>
+      {/* Send button + Script Toggle */}
+      <div style={{ margin: "10px 0", display: "flex", alignItems: "center", gap: "10px"}}>
+        <button className="send-btn" onClick={handleSendRequest}>
           Send Request
         </button>
+        <ScriptToggle
+          isActive={isScriptActive}
+          toggleScripts={handleToggleScripts}
+        />
       </div>
 
       {/* Ack Output */}

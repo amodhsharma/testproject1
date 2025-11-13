@@ -4,3 +4,7 @@ touch src/components/JsonInput/JsonInput.js src/components/JsonInput/JsonInput.c
 touch src/components/AckOutput/AckOutput.js src/components/AckOutput/AckOutput.css
 touch src/components/MainOutput/MainOutput.js src/components/MainOutput/MainOutput.css
 touch src/config/apiEndpoints.js
+
+
+mkdir -p ScriptToggle && \
+touch ScriptToggle/ScriptToggle.js ScriptToggle/scripts.js ScriptToggle/scripts.css

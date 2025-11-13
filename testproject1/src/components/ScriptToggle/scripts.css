@@ -1,0 +1,24 @@
+.active-script-btn, .inactive-script-btn {
+  margin-top: 16px;      /* same vertical margin as send-btn */
+  padding: 10px 20px;    /* same padding as send-btn */
+  border-radius: 6px;    /* same corner radius */
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.active-script-btn {
+  background-color: #15b300;  /* same blue as send-btn */
+}
+
+.active-script-btn:hover {
+  background-color: #00753c;  /* same hover as send-btn */
+}
+
+.inactive-script-btn {
+  background-color: #ff5e00;  /* same blue as send-btn */
+}
+
+.inactive-script-btn:hover {
+  background-color: #b33900;  /* same hover as send-btn */
+}
